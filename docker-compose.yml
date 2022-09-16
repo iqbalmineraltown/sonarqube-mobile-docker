@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  sonarqube:
+    image: sonarqube_flutter:9_0.4.0
+    build:
+      context: .
+    container_name: sonarqube_flutter
+    ports:
+      - "9000:9000"

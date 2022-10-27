@@ -1,11 +1,14 @@
 # Sonarqube + Flutter
 
-Sonarqube base docker image with Flutter plugin from [sonar-flutter](https://github.com/insideapp-oss/sonar-flutter)
+Sonarqube base docker image with plugins:
+
+- [sonar-flutter](https://github.com/insideapp-oss/sonar-flutter)
+- [sonar-swift](https://github.com/Idean/sonar-swift)
 
 ## Prerequisites
 
 - Docker on sonarqube's host machine
-- [sonar-scanner-cli](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/) on project's host machine
+- [sonar-scanner-cli](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/) on project's host machine. Or `brew install sonar-scanner`
 
 ## Setup
 
@@ -19,8 +22,13 @@ On sonarqube's host machine:
 - If running analyzer on local dev machine, select testing `Locally`. (Else, select CI platform and follow the instructions provided)
 - Generate token for this project (`PROJECT_TOKEN`)
 
+### Bootstrap Exported Quality Profiles
+
+To use existing Quality Profiles, put the exported `.xml` file into `qualityprofile/` folder
+
 ## Run Analyzer
 
+### Flutter
 On the project's root folder:
 
 - Add `sonar-project.properties` file as following
@@ -57,7 +65,7 @@ sonar.dart.analysis.useExistingOptions=true
 - `sonar-scanner -Dsonar.login=<PROJECT_TOKEN>` to submit result to sonarqube
 - Analysis result should be available shortly on the sonarqube dashboard
 
-### Using sonar-scanner-cli-docker
+#### Using sonar-scanner-cli-docker
 
 sonar-scanner-cli also available as [docker image](https://github.com/SonarSource/sonar-scanner-cli-docker)
 
@@ -69,3 +77,5 @@ docker run \
     -v "<SOURCE_DIR>:/usr/src" \
     sonarsource/sonar-scanner-cli
 ```
+
+### iOS

@@ -73,9 +73,15 @@ sonar-scanner-cli also available as [docker image](https://github.com/SonarSourc
 docker run \
     --rm \
     -e SONAR_HOST_URL="<SONAR_HOST>" \
-    -e SONAR_LOGIN="<PROJECT_TOKEN>" \
+    -e SONAR_TOKEN="<PROJECT_TOKEN>" \
     -v "<SOURCE_DIR>:/usr/src" \
     sonarsource/sonar-scanner-cli
+```
+
+sample to run on root project folder against local docker sonarqube
+
+```
+docker run --rm -e SONAR_HOST_URL="http://localhost:9000" -e SONAR_TOKEN="<PROJECT_TOKEN>" -v ".:/usr/src" --network="scanner-sq-network" sonarsource/sonar-scanner-cli
 ```
 
 ### iOS

@@ -1,9 +1,14 @@
 version: "3.9"
 services:
   sonarqube:
-    image: sonarqube_flutter:9_0.4.0
+    image: sonarqube_flutter:9.9_0.5.1
     build:
       context: .
+    networks:
+      - scanner-sq-network
     container_name: sonarqube_flutter
     ports:
       - "9000:9000"
+networks:
+  scanner-sq-network:
+    

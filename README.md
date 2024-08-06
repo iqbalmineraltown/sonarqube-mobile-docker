@@ -29,11 +29,12 @@ To use existing Quality Profiles, put the exported `.xml` file into `qualityprof
 ## Run Analyzer
 
 ### Flutter
+
 On the project's root folder:
 
 - Add `sonar-project.properties` file as following
 
-```
+```bash
 # Project identification
 sonar.projectKey=<PROJECT_KEY>
 sonar.projectName=<PROJECT_NAME>
@@ -61,15 +62,23 @@ sonar.sourceEncoding=UTF-8
 sonar.dart.analysis.useExistingOptions=true
 
 ```
+
 - `flutter pub get && flutter test --machine --coverage > tests.output` to run analysis
-- `sonar-scanner -Dsonar.login=<PROJECT_TOKEN>` to submit result to sonarqube
+- submit result to sonarqube
+
+```bash
+sonar-scanner \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=<TOKEN>
+```
+
 - Analysis result should be available shortly on the sonarqube dashboard
 
 #### Using sonar-scanner-cli-docker
 
 sonar-scanner-cli also available as [docker image](https://github.com/SonarSource/sonar-scanner-cli-docker)
 
-```
+```bash
 docker run \
     --rm \
     -e SONAR_HOST_URL="<SONAR_HOST>" \
@@ -80,7 +89,7 @@ docker run \
 
 sample to run on root project folder against local docker sonarqube
 
-```
+```bash
 docker run --rm -e SONAR_HOST_URL="http://localhost:9000" -e SONAR_TOKEN="<PROJECT_TOKEN>" -v ".:/usr/src" --network="scanner-sq-network" sonarsource/sonar-scanner-cli
 ```
 

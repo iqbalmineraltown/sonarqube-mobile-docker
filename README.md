@@ -68,8 +68,13 @@ sonar.dart.analysis.useExistingOptions=true
 
 ```bash
 sonar-scanner \
+  -Dsonar.projectKey=com.mekari.flex:flutter \
   -Dsonar.host.url=http://localhost:9000 \
-  -Dsonar.login=<TOKEN>
+  -Dsonar.login=<token> \
+  -Dsonar.pullrequest.key=1 \
+  -Dsonar.pullrequest.branch="feature/ABC-1234" \
+  -Dsonar.pullrequest.base=main
+
 ```
 
 - Analysis result should be available shortly on the sonarqube dashboard
